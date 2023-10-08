@@ -19,6 +19,9 @@ numberButtons.forEach(button => {
       clearDisplay();
       resultDisplayed = false;
     }
+    if (currentInput === "0" && button.innerText === "0") {
+      return; // Ignore the extra "0"
+    }
     currentInput += button.innerText;
     updateDisplay();
     updateDecimalButton();
@@ -30,6 +33,9 @@ document.addEventListener('keydown', function(event) {
   if (event.key === 'Shift' || event.key === 'Control' || event.key === 'Alt') {
     return;
   }
+  if (currentInput === "0" && event.key === "0") {
+      return; // Ignore the extra "0"
+    }
   const isNumber = isFinite(event.key);
   if (isNumber) {
     if (resultDisplayed) {
