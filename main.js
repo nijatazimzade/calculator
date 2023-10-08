@@ -179,7 +179,7 @@ function operate() {
   }
   if (result%1!==0) {
     if(num2===0){
-      currentInput = result;
+      currentInput = 'Can not divide by zero';
     }else{
     currentInput = result.toFixed(3);
     }
