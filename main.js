@@ -156,7 +156,13 @@ function clearDisplay() {
   display.innerText = '';
 }
 
+// ...
+
 function operate() {
+  if (currentOperator === null || currentInput === '') {
+    return; // Nothing to operate on
+  }
+
   const num1 = parseFloat(previousInput);
   const num2 = parseFloat(currentInput);
   let result;
@@ -183,20 +189,18 @@ function operate() {
     default:
       break;
   }
-  if (result%1!==0) {
-    if(num2===0){
-      currentInput = 'Can not divide by zero';
-    }else{
+
+  if (result % 1 !== 0) {
     currentInput = result.toFixed(3);
-    }
-  }
-  else{
-    currentInput = result; 
+  } else {
+    currentInput = result;
   }
 
-  decimalButton.disabled = false; 
+  currentOperator = null; // Reset the operator
+  decimalButton.disabled = false;
   updateDisplay();
-  updateDecimalButton(); 
+  updateDecimalButton();
 }
+
 
 clearDisplay();
