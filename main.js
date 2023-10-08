@@ -178,7 +178,11 @@ function operate() {
       break;
   }
   if (result%1!==0) {
+    if(num2===0){
+      currentInput = result;
+    }else{
     currentInput = result.toFixed(3);
+    }
   }
   else{
     currentInput = result; 
