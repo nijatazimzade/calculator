@@ -23,8 +23,73 @@ numberButtons.forEach(button => {
     updateDisplay();
     updateDecimalButton();
   });
+  
 });
 
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Shift' || event.key === 'Control' || event.key === 'Alt') {
+    return;
+  }
+  const isNumber = isFinite(event.key);
+  if (isNumber) {
+    if (resultDisplayed) {
+      clearDisplay();
+      resultDisplayed = false;
+    }
+    currentInput += event.key;
+    updateDisplay();
+    updateDecimalButton();
+  }
+  else if(event.key=='/' ||event.key=='+'||event.key=='-'||event.key=='*'){
+    if (currentInput !== '') {
+      if (currentOperator !== null) {
+        operate();
+        updateDisplay();
+        previousInput = currentInput;
+      } else {
+        previousInput = currentInput;
+      }
+      currentOperator = event.key;
+      currentInput = '';
+    }
+    updateDecimalButton();
+
+  }else if(event.key=='.'){
+    if (currentInput.includes('.')||currentInput=='') {
+      decimalButton.disabled = true; 
+    }
+    else{
+        currentInput += '.';
+        updateDisplay();
+        decimalButton.disabled = true;
+    }
+  }
+  else if(event.key =='Backspace'){
+    currentInput = currentInput.slice(0, -1);
+    updateDisplay();
+    updateDecimalButton();
+  }
+  else if(event.key =="=" ||event.key =="Enter"){
+    if (currentInput !== '') {
+      operate();
+      currentOperator = null;
+      resultDisplayed = true;
+      updateDisplay();
+    }
+  }
+  else if(event.key='c'){
+    clearDisplay();
+    currentInput = '';
+    currentOperator = null;
+    previousInput = '';
+    resultDisplayed = false;
+    decimalButton.disabled = false;
+  }
+  else {
+    event.preventDefault();
+  }
+ 
+});
 operationButtons.forEach(button => {
     button.addEventListener('click', () => {
       if (currentInput !== '') {
