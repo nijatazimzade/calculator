@@ -168,6 +168,7 @@ function operate() {
     case '/':
       if (num2 === 0) {
         result = 'Can not divide by zero';
+        return;
       } else {
         result = num1 / num2;
       }
