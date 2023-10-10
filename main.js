@@ -47,6 +47,10 @@ document.addEventListener('keydown', function(event) {
     updateDecimalButton();
   }
   else if(event.key=='/' ||event.key=='+'||event.key=='-'||event.key=='*'){
+        console.log(event.key);
+        //currentOperator = event.key;
+        console.log(currentOperator);
+
     if (currentInput !== '') {
       if (currentOperator !== null) {
         operate();
@@ -57,6 +61,10 @@ document.addEventListener('keydown', function(event) {
       }
       currentOperator = event.key;
       currentInput = '';
+
+    }else if(previousInput!==''&& currentOperator!==null&&currentInput==''){
+          currentOperator = event.key;
+          console.log(currentOperator);
     }
     updateDecimalButton();
 
