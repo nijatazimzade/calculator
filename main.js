@@ -116,7 +116,10 @@ operationButtons.forEach(button => {
         }
         currentOperator = button.innerText;
         currentInput = '';
-      }
+      }else if(previousInput!==''&& currentOperator!==null&&currentInput==''){
+          currentOperator = event.key;
+          console.log(currentOperator);
+    }
       updateDecimalButton();
     });
   });
